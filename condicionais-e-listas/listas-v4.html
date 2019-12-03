@@ -1,0 +1,54 @@
+<meta charset="UTF-8">
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+    <ul>
+        <!-- Percorrendo um array com v-for temos a possibilidade de ter até dois parâmetros
+             sendo o primeiro o valor e o segundo o índice(posição). OBS: Nessa ordem. 
+        -->
+        <li v-for="(cor, i) in cores">
+                {{ i }} ) {{ cor }}
+        </li>
+    </ul>
+    <hr>
+    <template v-for="(cor, i) in cores">
+        <h1>{{ cor }}</h1>
+        <p>{{ i + 1 }}</p>
+    </template>
+    <hr>
+    <ul>
+        <li v-for="pessoa in pessoas">
+            <!-- Quando se trata de objetos podem haver até três valores em um parâmetro,
+                 sendo o primeiro o valor, o segundo a chave(nome do elemento) e
+                 por fim o index(posição). OBS: Nessa ordem.
+            -->
+            <div v-for="(valor, chave, index) in pessoa">
+                {{ chave }}:{{ valor }} ({{ index + 1 }})
+            </div>
+        </li>
+    </ul>
+    <hr>
+    <div v-for="n in 10">{{ n }}</div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            cores: ['vermelho', 'verde', 'amarelo', 'azul'],
+            pessoas: [
+                {nome: 'Ana', idade: 26, peso: 59},
+                {nome: 'Guilherme', idade: 22, peso: 89}
+            ]
+        }
+    })
+</script>
+
+<style>
+    ul{
+        list-style: none;
+    }    
+    h1, p {
+        display: inline;
+    }
+</style>
