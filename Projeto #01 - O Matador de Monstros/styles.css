@@ -1,0 +1,104 @@
+#app {
+    margin: 0 auto;
+    width: 98%;
+}
+.block {
+    box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.15);
+    text-align: center;
+    padding: 2em 0 2em 0;
+    margin: 0 0 2em 0;
+}
+.grid {
+    display: grid;
+}
+.grid-template-columns {
+    grid-template-columns: 50% 50%;
+}
+.item {
+    text-align: center;
+}
+.barra-progresso {
+    height: 30px;
+    margin: 0 auto;
+    width: 50%;
+    border: 0.1em solid gray;
+}
+.progresso {
+    max-width: 30em;
+    height: 100%;
+}
+h1 {
+    font-family: 'Montserrat', sans-serif;
+}
+h2 {
+    font-family: 'Montserrat', sans-serif;
+}
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+}
+button {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0.5em 0 0.5em;
+}
+#begin {
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 0.2em;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+#begin:hover {
+    background-color: cornflowerblue;
+}
+#atk {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 0.2em;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+#atk-e {
+    background-color: orange;
+    color: black;
+    border: none;
+    border-radius: 0.2em;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+#heal {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 0.2em;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+#give-up {
+    background-color: gray;
+    color: black;
+    border: none;
+    border-radius: 0.2em;
+    font-size: 1.2em;
+    padding: 0.5em;
+}
+.loser {
+    color: red;
+}
+.winner {
+    color: darkgreen;
+}
+#log {
+    max-height: 17em;
+    overflow: auto;
+}
+#log2 {
+    margin: 0 auto;
+    width: 98%;
+}
+.dataLog {
+    border-radius: 0.2em;
+    color: white;
+}

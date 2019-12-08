@@ -1,7 +1,7 @@
 new Vue({
 	el: '#desafio',
 	data: {
-		elshow: true,
+		expressao: true,
 		array: ['Pedro', 'Bia', 'Ana', 'Rebeca'],
 		livro: {
 			titulo: 'O Senhor dos Anéis',
