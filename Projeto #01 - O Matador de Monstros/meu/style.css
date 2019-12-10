@@ -2,6 +2,9 @@
     margin: 0 auto;
     width: 98%;
 }
+body {
+    font-family: 'Montserrat', sans-serif;
+}
 .block {
     box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.15);
     text-align: center;
@@ -17,6 +20,10 @@
 .item {
     text-align: center;
 }
+.item h1 {
+    font-weight: 300;
+    font-size: 1.6rem;
+}
 .barra-progresso {
     height: 30px;
     margin: 0 auto;
@@ -24,21 +31,14 @@
     border: 0.1em solid gray;
 }
 .progresso {
+    background-color: green;
     max-width: 30em;
     height: 100%;
 }
-h1 {
-    font-family: 'Montserrat', sans-serif;
-}
-h2 {
-    font-family: 'Montserrat', sans-serif;
-}
-p {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em;
+.barra-progresso .danger {
+    background-color: red;
 }
 button {
-    font-family: 'Montserrat', sans-serif;
     margin: 0 0.5em 0 0.5em;
 }
 #begin {
@@ -88,13 +88,13 @@ button {
     color: red;
 }
 .winner {
-    color: darkgreen;
+    color: green;
 }
-#log {
+#logs {
     max-height: 17em;
     overflow: auto;
 }
-#log2 {
+.log {
     margin: 0 auto;
     width: 98%;
 }
