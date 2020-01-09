@@ -1,24 +1,26 @@
 <template>
 	<v-app>
 		<MENU />
-		<TITLE />
-		<CAROUSEL />
+		<TOOLBAR />
+		<v-content>
+			<CAROUSEL />
+		</v-content>
 		<FOOTER />
 	</v-app>
 </template>
 
 <script>
 //Importação de Componentes de forma Local
-import Menu from './components/Menu.vue'
-import Title from './components/Title.vue'
-import Carousel from './components/Carousel.vue'
-import Footer from './components/Footer.vue'
+import Menu from '@/components/template/Menu.vue'
+import Toolbar from '@/components/template/Toolbar.vue'
+import Carousel from '@/components/widgets/Carousel.vue'
+import Footer from '@/components/template/Footer.vue'
 
 export default {
 //Registro de Componentes de forma Local
 	components: {
 		'MENU': Menu,
-		'TITLE': Title,
+		'TOOLBAR': Toolbar,
 		'CAROUSEL': Carousel,
 		'FOOTER': Footer
 	}

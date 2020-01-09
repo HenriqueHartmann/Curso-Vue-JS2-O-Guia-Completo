@@ -1,18 +1,18 @@
 <template>
     <v-navigation-drawer app>
-        <MENU-TITLE />
+        <MENU-TOOLBAR />
 		<v-divider></v-divider>
         <MENU-LIST />
 	</v-navigation-drawer>
 </template>
 
 <script>
-import TitleMenu from './TitleMenu.vue'
+import ToolbarMenu from './ToolbarMenu.vue'
 import ListMenu from './ListMenu.vue'
 
 export default {
     components: {
-        'MENU-TITLE':TitleMenu, 'MENU-LIST':ListMenu
+        'MENU-TOOLBAR':ToolbarMenu, 'MENU-LIST':ListMenu
     } 
 }
 </script>
