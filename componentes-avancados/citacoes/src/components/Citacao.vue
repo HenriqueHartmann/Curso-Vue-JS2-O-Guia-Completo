@@ -8,7 +8,19 @@
 
 <script>
 export default {
-
+    created() {
+        console.log('created')
+    },
+    destroyed() {
+        console.log('destroyed')
+    },
+    // Só vai funcionar quando o componente em questão ser filho da tag keep-alive
+    activated() {
+        console.log('activated')
+    },
+    deactivated() {
+        console.log('deactivated')
+    }
 }
 </script>
 
