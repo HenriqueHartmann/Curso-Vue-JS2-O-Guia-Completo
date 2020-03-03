@@ -6,7 +6,7 @@
 		</span>
 		<!-- Mantém o componente vivo, ou seja, seus dados são preservados e não recriados -->
 		<keep-alive> 
-			<componente :is="componente" />
+			<component :is="componente" />
 		</keep-alive>
 	</div>
 </template>
