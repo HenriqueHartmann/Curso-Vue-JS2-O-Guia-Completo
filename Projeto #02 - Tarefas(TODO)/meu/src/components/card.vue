@@ -1,11 +1,13 @@
 <template>
 	<div class="cards">
 		<div :class="{card: todo.status == 0, carddone: todo.status == 100}" v-for="todo in todos" :key="todo.id">
-			<button class="delete-card" @click="destroyTarefa(todo)">X</button>
-			<span class="text-todo" @click="endTarefa(todo)">
-				<template v-if="todo.status == 100"><strike>{{ todo.name }}</strike></template>
-				<template v-else>{{ todo.name }}</template>
-			</span>
+			<button class="delete-button" @click="destroyTarefa(todo)">X</button>
+			<div class="card-content" @click="endTarefa(todo)">
+				<span class="text-todo">
+					<template v-if="todo.status == 100"><strike>{{ todo.name }}</strike></template>
+					<template v-else>{{ todo.name }}</template>
+				</span>
+			</div>
         </div>
 	</div>
 </template>
@@ -39,6 +41,7 @@ export default {
 		grid-auto-rows: auto;
 		grid-gap: 1rem;
 	}
+
 	.card {
 		width: 300px;
 		height: 100px;
@@ -48,9 +51,11 @@ export default {
 		text-align: center;
 		word-wrap: break-word;
 	}
+
 	.card:hover {
 		cursor: pointer;
 	}
+
 	.carddone {
 		width: 300px;
 		height: 100px;
@@ -60,14 +65,12 @@ export default {
 		text-align: center;
 		word-wrap: break-word;
 	}
+
 	.carddone:hover {
 		cursor: pointer;
 	}
-	.text-todo {
-		font-size: 25px;
-		font-weight: 300;
-	}
-	.delete-card {
+
+	.delete-button {
 		text-align: center;
 		font-size: 10px;
 		width: 20px;
@@ -82,11 +85,21 @@ export default {
 		margin-right: 5px;
 		transition: background .3s ease, border .3s ease, color .3s ease;
 	}
-	.delete-card:hover {
+
+	.delete-button:hover {
 		cursor: pointer;
-		background: #00871B;
+		background: #6C70FF;
 		width: 22px;
 		height: 20px;
 		font-size: 11px;
+	}
+
+	.card-content {
+		line-height: 80px;
+	}
+
+	.text-todo {
+		font-size: 25px;
+		font-weight: 300;
 	}
 </style>

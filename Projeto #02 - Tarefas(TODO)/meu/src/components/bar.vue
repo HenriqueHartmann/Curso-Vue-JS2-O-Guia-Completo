@@ -1,7 +1,9 @@
 <template>
 	<div class="bar">
-		<!-- <span class="text-percent">{{ percent }}%</span> -->
-		<div class="bar-percent" :style="{width: percent + '%',height: '100%', background: '#91D622'}"></div>
+		<div class="progress-bar" :style="{width: percent + '%'}" />
+		<div class="text-bar">
+			<span>{{ percent }}%</span>
+		</div>
 	</div>
 </template>
 
@@ -24,10 +26,24 @@ export default {
 		border: 2px solid white;
 		border-radius: 5px;
 	}
-	.text-percent {
+
+	.progress-bar {
 		margin: 0;
+		height: 100%;
+		background: #91D622;
+		position: absolute;
+		z-index: -10;
+	}
+	
+	.text-bar {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		z-index: 4;
+	}
+
+	.text-bar span {
+		text-align: center;
 		font-size: 25px;
-		line-height: 30px;
-		background: transparent;
 	}
 </style>
