@@ -1,8 +1,8 @@
 <template>
 	<div class="cards">
-		<div :class="{card: todo.status == 0, carddone: todo.status == 100}" v-for="todo in todos" :key="todo.id" @click="endTarefa(todo)">
-			<button class="delete-card">X</button>
-			<span class="text-todo">
+		<div :class="{card: todo.status == 0, carddone: todo.status == 100}" v-for="todo in todos" :key="todo.id">
+			<button class="delete-card" @click="destroyTarefa(todo)">X</button>
+			<span class="text-todo" @click="endTarefa(todo)">
 				<template v-if="todo.status == 100"><strike>{{ todo.name }}</strike></template>
 				<template v-else>{{ todo.name }}</template>
 			</span>
@@ -24,6 +24,9 @@ export default {
 			}else {
 				tarefa.status = "0"
 			}
+		},
+		destroyTarefa: function(tarefa) {
+			this.todos.splice(this.todos.indexOf(tarefa), 1)
 		}
 	}
 }

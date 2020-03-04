@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<h1 @click="calculaTarefas">Tarefas</h1>
+		<h1>Tarefas</h1>
 		<BarTODO :percent="percent" />
 		<FormTODO @inputData="addTarefa" />
 		<CardTODO :todos="todo_list" />
@@ -17,14 +17,10 @@ export default {
 	data() {
 		return {
 			todo_list: [],
-			percent: 0
 		}
 	},
-	methods: {
-		addTarefa: function(variable) {
-			this.todo_list.push({"name":variable, "status": "0"})
-		},
-		calculaTarefas: function() {
+	computed: {
+		percent: function() {
 			var qtdDone = 0
 			var size = this.todo_list.length
 			for (var i = 0; i < size; i++) {
@@ -32,8 +28,17 @@ export default {
 					qtdDone += 1
 				}
 			}
-			this.percent = (qtdDone * 100) / size
+			if (size == 0) {
+				size = 1
+			}
+			var value = (qtdDone * 100) / size
+			return value.toFixed(0)
 		}
+	},
+	methods: {
+		addTarefa: function(variable) {
+			this.todo_list.push({"name":variable, "status": "0"})
+		},
 	}
 }
 </script>
