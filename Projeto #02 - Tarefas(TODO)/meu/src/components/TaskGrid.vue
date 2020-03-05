@@ -1,11 +1,14 @@
 <template>
-	<div class="cards">
-		<div :class="{card: todo.status == 0, carddone: todo.status == 100}" v-for="todo in todos" :key="todo.id">
-			<button class="delete-button" @click="destroyTarefa(todo)">X</button>
-			<div class="card-content" @click="endTarefa(todo)">
+	<div class="grid-container">
+		<div 
+			:class="{'grid-item': task.pending == true, 'grid-item-done': task.pending == false}"
+			v-for="task in tasks" :key="task.id"
+		>
+			<button class="delete-button" @click="deleteTask(task)">X</button>
+			<div class="grid-item-content" @click="endTask(task)">
 				<span class="text-todo">
-					<template v-if="todo.status == 100"><strike>{{ todo.name }}</strike></template>
-					<template v-else>{{ todo.name }}</template>
+					<template v-if="task.pending">{{ task.name }}</template>
+					<template v-else><strike>{{ task.name }}</strike></template>
 				</span>
 			</div>
         </div>
@@ -15,34 +18,33 @@
 <script>
 export default {
 	props: {
-		todos: {
-			type: Array
-		}
+		tasks: { type: Array, required: true }
 	}, 
 	methods: {
-		endTarefa: function(tarefa) {
-			if (tarefa.status == 0){
-				tarefa.status = "100"
+		endTask: function(task) {
+			if (task.pending == false){
+				task.pending = true
 			}else {
-				tarefa.status = "0"
+				task.pending = false
 			}
 		},
-		destroyTarefa: function(tarefa) {
-			this.todos.splice(this.todos.indexOf(tarefa), 1)
+		deleteTask: function(task) {
+			this.tasks.splice(this.tasks.indexOf(task), 1)
 		}
 	}
 }
 </script>
 
 <style>
-	.cards {
-		display: grid;
+	.grid-container {
+		display: inline-grid;
 		grid-template-columns: repeat(5, 1fr);
 		grid-auto-rows: auto;
 		grid-gap: 1rem;
 	}
 
-	.card {
+	.grid-item {
+		margin-left: auto;
 		width: 300px;
 		height: 100px;
 		border-left: 10px solid #9D002C;
@@ -50,13 +52,14 @@ export default {
 		background: #D41935;
 		text-align: center;
 		word-wrap: break-word;
+		user-select: none;
 	}
 
-	.card:hover {
+	.grid-item:hover {
 		cursor: pointer;
 	}
 
-	.carddone {
+	.grid-item-done {
 		width: 300px;
 		height: 100px;
 		border-left: 10px solid #00871B;
@@ -64,9 +67,10 @@ export default {
 		background: #19D43E;
 		text-align: center;
 		word-wrap: break-word;
+		user-select: none;
 	}
 
-	.carddone:hover {
+	.grid-item-done:hover {
 		cursor: pointer;
 	}
 
@@ -94,7 +98,7 @@ export default {
 		font-size: 11px;
 	}
 
-	.card-content {
+	.grid-item-content {
 		line-height: 80px;
 	}
 

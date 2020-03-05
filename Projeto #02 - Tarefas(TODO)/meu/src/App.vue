@@ -2,42 +2,60 @@
 	<div id="app">
 		<h1>Tarefas</h1>
 		<BarTODO :percent="percent" />
-		<FormTODO @inputData="addTarefa" />
-		<CardTODO :todos="todo_list" />
+		<NewTask @inputData="createTask" />
+		<TaskGrid :tasks="tasks" />
 	</div>
 </template>
 
 <script>
-import FormTODO from './components/form.vue'
+import NewTask from './components/NewTask.vue'
 import BarTODO from './components/bar.vue'
-import CardTODO from './components/card.vue'
+import TaskGrid from './components/TaskGrid.vue'
 
 export default {
-	components: { FormTODO, BarTODO, CardTODO },
+	components: { NewTask, BarTODO, TaskGrid },
 	data() {
 		return {
-			todo_list: [],
+			tasks: [],
 		}
 	},
 	computed: {
+		size: function() {
+			return this.tasks.length
+		},
 		percent: function() {
 			var qtdDone = 0
-			var size = this.todo_list.length
-			for (var i = 0; i < size; i++) {
-				if(this.todo_list[i].status == "100") {
+			for (var i = 0; i < this.size; i++) {
+				if(this.tasks[i].pending == false) {
 					qtdDone += 1
 				}
 			}
-			if (size == 0) {
-				size = 1
+			var value = 0
+			if (this.size == 0) {
+				value = (qtdDone * 100) / 1
+			} else {
+				value = (qtdDone * 100) / this.size
 			}
-			var value = (qtdDone * 100) / size
+			 
 			return value.toFixed(0)
 		}
 	},
 	methods: {
-		addTarefa: function(variable) {
-			this.todo_list.push({"name":variable, "status": "0"})
+		checkTask: function(task) {
+			let occur = false
+			if (this.size > 0) {
+				for (var i = 0; i < this.size; i++) {
+					occur = (this.tasks[i].name == task)
+				}
+				return occur
+			} else {
+				return false
+			}
+		},
+		createTask: function(task) {
+			if (this.checkTask(task) == false) {
+				this.tasks.push({"name":task, "pending": true})
+			}
 		},
 	}
 }

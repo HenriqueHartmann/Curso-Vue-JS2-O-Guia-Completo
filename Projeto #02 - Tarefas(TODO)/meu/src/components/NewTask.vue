@@ -1,11 +1,11 @@
 <template>
 	<div class="form">
-		<input class="input-todo" type="text" v-model="tarefa" maxLength="70" placeholder="Nova Tarefa?">
-        <template v-if="tarefa.length >= 2">
-            <button class="button-todo" @click="sendTarefa">+</button>
+		<input class="input-task" type="text" v-model="task" maxLength="70" placeholder="Nova Tarefa?">
+        <template v-if="task.length >= 2">
+            <button class="button-add-task" @click="sendTask">+</button>
         </template>
         <template v-else>
-            <button class="button-todo-disabled" @click="sendTarefa">+</button>
+            <button class="button-add-task-disabled">+</button>
         </template>
 	</div>
 </template>
@@ -14,20 +14,20 @@
 export default {
     data() {
         return {
-            tarefa: ''
+            task: ''
         }
     },
     methods: {
-        sendTarefa: function() {
-            this.$emit('inputData', this.tarefa)
-            this.tarefa = ''
+        sendTask: function() {
+            this.$emit('inputData', this.task)
+            this.task = ''
         }
     }
 }
 </script>
 
 <style>
-    .input-todo {
+    .input-task {
         margin: 0;
         margin-bottom: 30px;
         width: 360px;
@@ -40,16 +40,16 @@ export default {
         background: rgba(0,0,0,0.15);
     }
 
-    .input-todo::placeholder {
+    .input-task::placeholder {
         color: #CBD1DC;
     }
 
-    .input-todo:focus {
+    .input-task:focus {
         outline: none;
         border-color: #275EFE;
     }
 
-    .button-todo {
+    .button-add-task {
         margin-left: -1px;
         padding: 8px 12px;
         line-height: 23px;
@@ -62,12 +62,12 @@ export default {
         transition: background .3s ease, border .3s ease, color .3s ease;
     }
 
-    .button-todo:hover {
+    .button-add-task:hover {
         border-color: #275EFE;
         cursor: pointer;
     }
     
-    .button-todo-disabled {
+    .button-add-task-disabled {
         margin-left: -1px;
         padding: 8px 12px;
         line-height: 23px;
