@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<h1>Tarefas</h1>
-		<TaskBar :progress="progress" />
+		<TaskProgress :progress="progress" />
 		<NewTask @inputData="createTask" />
 		<TaskGrid :tasks="tasks" @deleteTask="deleteTask" @toggleStateTask="toggleStateTask" />
 	</div>
@@ -9,11 +9,11 @@
 
 <script>
 import NewTask from './components/NewTask.vue'
-import TaskBar from './components/TaskBar.vue'
+import TaskProgress from './components/TaskProgress.vue'
 import TaskGrid from './components/TaskGrid.vue'
 
 export default {
-	components: { NewTask, TaskBar, TaskGrid },
+	components: { NewTask, TaskProgress, TaskGrid },
 	data() {
 		return {
 			tasks: [],
@@ -21,9 +21,8 @@ export default {
 	},
 	computed: {
 		progress: function() {
-			const doneTasks = t => t.pending === false
-			let qtdDone = this.tasks.filter(doneTasks).length
-			let value = qtdDone * 100
+			const doneTasks = t => t.pending === false 
+			let value = this.tasks.filter(doneTasks).length * 100
 			const size = this.tasks.length
 			if (size > 0) {
 				value = value / size
