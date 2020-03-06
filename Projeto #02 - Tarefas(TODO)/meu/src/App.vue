@@ -1,62 +1,50 @@
 <template>
 	<div id="app">
 		<h1>Tarefas</h1>
-		<BarTODO :percent="percent" />
+		<TaskBar :progress="progress" />
 		<NewTask @inputData="createTask" />
-		<TaskGrid :tasks="tasks" />
+		<TaskGrid :tasks="tasks" @deleteTask="deleteTask" @toggleStateTask="toggleStateTask" />
 	</div>
 </template>
 
 <script>
 import NewTask from './components/NewTask.vue'
-import BarTODO from './components/bar.vue'
+import TaskBar from './components/TaskBar.vue'
 import TaskGrid from './components/TaskGrid.vue'
 
 export default {
-	components: { NewTask, BarTODO, TaskGrid },
+	components: { NewTask, TaskBar, TaskGrid },
 	data() {
 		return {
 			tasks: [],
 		}
 	},
 	computed: {
-		size: function() {
-			return this.tasks.length
-		},
-		percent: function() {
-			var qtdDone = 0
-			for (var i = 0; i < this.size; i++) {
-				if(this.tasks[i].pending == false) {
-					qtdDone += 1
-				}
+		progress: function() {
+			const doneTasks = t => t.pending === false
+			let qtdDone = this.tasks.filter(doneTasks).length
+			let value = qtdDone * 100
+			const size = this.tasks.length
+			if (size > 0) {
+				value = value / size
 			}
-			var value = 0
-			if (this.size == 0) {
-				value = (qtdDone * 100) / 1
-			} else {
-				value = (qtdDone * 100) / this.size
-			}
-			 
 			return value.toFixed(0)
 		}
 	},
 	methods: {
-		checkTask: function(task) {
-			let occur = false
-			if (this.size > 0) {
-				for (var i = 0; i < this.size; i++) {
-					occur = (this.tasks[i].name == task)
-				}
-				return occur
-			} else {
-				return false
-			}
-		},
 		createTask: function(task) {
-			if (this.checkTask(task) == false) {
-				this.tasks.push({"name":task, "pending": true})
+			const sameName = t => t.name === task
+			const reallyNew = this.tasks.filter(sameName).length == 0
+			if (reallyNew) {
+				this.tasks.push({name: task, pending: true})
 			}
 		},
+		deleteTask: function(i) {
+			this.tasks.splice(i, 1)
+		},
+		toggleStateTask: function(i) {
+			this.tasks[i].pending = !this.tasks[i].pending
+		}
 	}
 }
 </script>

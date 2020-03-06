@@ -1,12 +1,8 @@
 <template>
 	<div class="form">
-		<input class="input-task" type="text" v-model="task" maxLength="70" placeholder="Nova Tarefa?">
-        <template v-if="task.length >= 2">
-            <button class="button-add-task" @click="sendTask">+</button>
-        </template>
-        <template v-else>
-            <button class="button-add-task-disabled">+</button>
-        </template>
+		<input class="input-task" type="text" v-model="task" maxLength="25" placeholder="Nova Tarefa?">
+        <button v-if="task.length >= 5" class="button-add-task free" @click="sendTask">+</button>
+        <button v-else class="button-add-task block">+</button>
 	</div>
 </template>
 
@@ -57,26 +53,16 @@ export default {
         color: #fff;
         border: 1px solid #CDD9ED;
         border-radius: 0 6px 6px 0;
-        background: #678EFE;
         text-align: center;
+        cursor: pointer;
         transition: background .3s ease, border .3s ease, color .3s ease;
     }
 
-    .button-add-task:hover {
-        border-color: #275EFE;
-        cursor: pointer;
+    .free {
+        background: #678EFE;
     }
-    
-    .button-add-task-disabled {
-        margin-left: -1px;
-        padding: 8px 12px;
-        line-height: 23px;
-        font-size: 20px;
-        color: #fff;
-        border: 1px solid #CDD9ED;
-        border-radius: 0 6px 6px 0;
+
+    .block {
         background: rgba(129, 132, 119, 0.5);
-        text-align: center;
-        transition: background .3s ease, border .3s ease, color .3s ease;
     }
 </style>
