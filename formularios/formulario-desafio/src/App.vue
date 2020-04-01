@@ -19,33 +19,31 @@
 				<!-- Crie um componente personalizado NomeCompleto -->
 				<!-- Esse componente deve receber Nome e Sobrenome -->
 				
-				<Rotulo nome="Primeiro Nome">
-					<input type="text" v-model="usuario.nome">
-				</Rotulo>
-				<Rotulo nome="Sobrenome Nome">
-					<input type="text" v-model="usuario.sobrenome">
-				</Rotulo>
+				<NomeCompleto v-model="nomeCompleto"/>
 				<Rotulo nome="Email">
-					<input type="email" v-model="usuario.email">
+					<input type="email" v-model="email">
 				</Rotulo>
 				<Rotulo nome="Senha">
-					<input type="password" v-model="usuario.senha">
+					<input type="password" v-model="senha">
 				</Rotulo>
-				<Rotulo nome="Armazenar ?">
-					<Escolha v-model="armazenar" />
+				<Rotulo nome="Armazenar Dados?">
+					<input type="checkbox" v-model="armazenar">
 				</Rotulo>
 				<button @click.prevent="enviar">Enviar</button>
 			</form>
 			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
-				<Rotulo nome="Nome completo">
-					<NomeCompleto :nome="usuario.nome" :sobrenome="usuario.sobrenome" />
+				<Rotulo nome="Primeiro Nome">
+					{{ nomeCompleto.nome }}
+				</Rotulo>
+				<Rotulo nome="Sobrenome">
+					{{ nomeCompleto.sobrenome }}
 				</Rotulo>
 				<Rotulo nome="Email">
-					{{ usuario.email }}
+					{{ email }}
 				</Rotulo>
 				<Rotulo nome="Senha">
-					{{ usuario.senha }}
+					{{ senha }}
 				</Rotulo>
 				<Rotulo nome="Armazenar ?">
 					{{ armazenar }}
@@ -57,12 +55,11 @@
 
 <script>
 import Rotulo from './components/Rotulo.vue'
-import Escolha from './components/Escolha.vue'
 import NomeCompleto from './components/NomeCompleto.vue'
 
 export default {
 	name: 'app',
-	components: { Rotulo, Escolha, NomeCompleto },
+	components: { Rotulo, NomeCompleto },
 	methods: {
 		enviar: function() {
 			this.enviado = true
@@ -70,13 +67,13 @@ export default {
 	},
 	data() {
 		return {
-			usuario: {
+			nomeCompleto: {
 				nome: '',
 				sobrenome: '',
-				email: '',
-				senha: ''
 			},
-			armazenar: false,
+			email: '',
+			senha: '',
+			armazenar: true,
 			enviado: false
 		}
 	}
